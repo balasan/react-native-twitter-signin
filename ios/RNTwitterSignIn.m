@@ -32,22 +32,11 @@ RCT_EXPORT_METHOD(logIn: (RCTPromiseResolveBlock)resolve
         if (error) {
             reject(@"Error", @"Twitter signin error", error);
         } else {
-            TWTRAPIClient *client = [TWTRAPIClient clientWithCurrentUser];
-            NSURLRequest *request = [client URLRequestWithMethod:@"GET"
-                                                             URL:@"https://api.twitter.com/1.1/account/verify_credentials.json"
-                                                      parameters:@{@"include_email": @"true", @"skip_status": @"true"}
-                                                           error:nil];
-            [client sendTwitterRequest:request completion:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-                NSError *jsonError;
-                NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
-                NSString *email = json[@"email"] ?: @"";
-                NSDictionary *body = @{@"authToken": session.authToken,
-                                       @"authTokenSecret": session.authTokenSecret,
-                                       @"userID":session.userID,
-                                       @"email": email,
-                                       @"userName":session.userName};
-                resolve(body);
-            }];
+            NSDictionary *body = @{@"authToken": session.authToken,
+                                   @"authTokenSecret": session.authTokenSecret,
+                                   @"userID":session.userID,
+                                   @"userName":session.userName};
+            resolve(body);
         }
     }];
 }
