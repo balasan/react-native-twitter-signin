@@ -1,3 +1,5 @@
+this is a fork of https://github.com/naoufal/react-native-safari-view that removes the unnecessary query to fetch user email (probably best to make it an option)
+
 [![npm version](https://badge.fury.io/js/react-native-twitter-signin.svg)](https://badge.fury.io/js/react-native-twitter-signin)
 
 Note: this guide is for TwitterKit 3.0 and ReactNatiee 0.42+.
